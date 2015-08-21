@@ -1,4 +1,4 @@
-# connect four
+# four
 
 React = require 'react'
 
@@ -10,12 +10,12 @@ Status = require './status'
 
 module.exports = React.createFactory React.createClass
 
-  name: 'connect-four'
-  displayName: 'Connect Four'
+  name: 'four'
+  displayName: 'Four'
 
   render: ->
     table
-      className: 'connect-four'
+      className: 'four'
 
       Header()
       Board()

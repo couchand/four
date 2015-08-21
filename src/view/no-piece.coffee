@@ -8,7 +8,7 @@ React = require 'react'
 
 module.exports = React.createFactory React.createClass
 
-  name: 'connect-four.no-piece'
+  name: 'four.no-piece'
   displayName: 'No Piece'
 
   render: ->

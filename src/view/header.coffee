@@ -21,7 +21,7 @@ winnerStore = require '../data/winner-store'
 
 module.exports = React.createFactory React.createClass
 
-  name: 'connect-four.header'
+  name: 'four.header'
   displayName: 'Header'
 
   mixins: [

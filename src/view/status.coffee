@@ -14,7 +14,7 @@ winnerStore = require '../data/winner-store'
 
 module.exports = React.createFactory React.createClass
 
-  name: 'connect-four.status'
+  name: 'four.status'
   displayName: 'Status'
 
   mixins: [

@@ -15,7 +15,7 @@ boardStore = require '../data/board-store'
 
 module.exports = React.createFactory React.createClass
 
-  name: 'connect-four.board'
+  name: 'four.board'
   displayName: 'Board'
 
   mixins: [Reflux.connect boardStore, 'board']

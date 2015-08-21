@@ -10,7 +10,7 @@ React = require 'react'
 
 module.exports = React.createFactory React.createClass
 
-  name: 'connect-four.piece'
+  name: 'four.piece'
   displayName: 'Piece'
 
   propTypes:
