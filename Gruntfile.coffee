@@ -39,7 +39,8 @@ module.exports = (grunt) ->
     clean:
       coffee: '<%= coffee.build.dest %>'
       browserify: '<%= browserify.build.dest %>'
-      uglify: '<%= uglify.build.dest %>'
+      copy: '<%= copy.build.dest %>'
+      dist: 'dist/'
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'

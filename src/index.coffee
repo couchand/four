@@ -1,11 +1,11 @@
-# connect four game
+# four game
 
 React = require 'react'
 
 Game = require './view'
 
-module.exports = connectFour = (el) ->
+module.exports = four = (el) ->
 
     React.render Game(), el
 
-window.connectFour = connectFour if window
+window.four = four if window

@@ -1,19 +1,21 @@
 {
-  "name": "connect-four",
+  "name": "four",
   "version": "1.0.0",
-  "description": "connect four game",
+  "description": "a four-in-a-row game",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/couchand/connect-four"
+    "url": "https://github.com/couchand/four"
   },
   "keywords": [
-    "connect four"
+    "four in a row",
+    "connect four",
+    "game"
   ],
-  "author": "Andrew Couch <connect-four@couchand.com>",
+  "author": "Andrew Couch <four@couchand.com>",
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
