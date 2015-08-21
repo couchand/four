@@ -38,25 +38,36 @@ module.exports = React.createFactory React.createClass
     @setState hovering: null
 
   handleClick: (col) -> =>
+    return unless @state.currentPlayer is @state.thisPlayer
     switch @state.currentPlayer
       when WHITE then play.white col
       else play.black col
 
   render: ->
-    thead {},
-      tr {},
-        for col in [0...BOARD_SIZE.cols]
-          if col in @state.legalMoves and @state.winner is EMPTY
-            td
-              key: "col-#{col}"
-              onClick: @handleClick col
-              onMouseOver: @handleMouseOver col
-              onMouseOut: @handleMouseOut col
-              if @state.hovering is col
-                Piece color: @state.currentPlayer
-              else
+    console.log 'header', @state
+
+    if @state.currentPlayer is @state.thisPlayer
+      thead {},
+        tr {},
+          for col in [0...BOARD_SIZE.cols]
+            if col in @state.legalMoves and @state.winner is EMPTY
+              td
+                key: "col-#{col}"
+                onClick: @handleClick col
+                onMouseOver: @handleMouseOver col
+                onMouseOut: @handleMouseOut col
+                if @state.hovering is col
+                  Piece color: @state.currentPlayer
+                else
+                  NoPiece()
+            else
+              td
+                key: "col-#{col}"
                 NoPiece()
-          else
+    else
+      thead {},
+        tr {},
+          for col in [0...BOARD_SIZE.cols]
             td
               key: "col-#{col}"
               NoPiece()

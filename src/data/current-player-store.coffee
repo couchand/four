@@ -17,6 +17,9 @@ module.exports = Reflux.createStore
   getInitialState: ->
     @getDefaultData()
 
+  output: ->
+    @trigger currentPlayer
+
   onSwitchPlayer: ->
     currentPlayer = switch currentPlayer
       when WHITE then BLACK

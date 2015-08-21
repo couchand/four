@@ -2,11 +2,12 @@
 
 React = require 'react'
 
-{table} = React.DOM
+{div, table} = React.DOM
 
 Header = require './header'
 Board = require './board'
 Status = require './status'
+Roster = require './roster'
 
 module.exports = React.createFactory React.createClass
 
@@ -14,9 +15,12 @@ module.exports = React.createFactory React.createClass
   displayName: 'Four'
 
   render: ->
-    table
+    div
       className: 'four'
 
-      Header()
-      Board()
-      Status()
+      table {},
+        Header()
+        Board()
+        Status()
+
+      Roster()

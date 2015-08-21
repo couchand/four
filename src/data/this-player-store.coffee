@@ -2,14 +2,39 @@
 
 Reflux = require 'reflux'
 
-{WHITE} = require '../common/constants'
+{EMPTY} = require '../common/constants'
 
-thisPlayer = WHITE
+playerRosterStore = require './player-roster-store'
+playerIdStore = require './player-id-store'
+
+playerRoster = no
+playerId = no
 
 module.exports = Reflux.createStore
 
+  init: ->
+    @listenTo playerRosterStore, @updatePlayers
+    @listenTo playerIdStore, @updateId
+
+  updatePlayers: (value) ->
+    playerRoster = value
+    @output()
+
+  updateId: (value) ->
+    playerId = value
+    @output()
+
   getDefaultData: ->
-    thisPlayer
+    EMPTY
 
   getInitialState: ->
     @getDefaultData()
+
+  output: ->
+    for color, id of playerRoster.current
+      console.log color, id
+      if id is playerId
+        @trigger +color
+        return
+
+    @trigger EMPTY

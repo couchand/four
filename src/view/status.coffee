@@ -10,6 +10,8 @@ Reflux = require 'reflux'
 {BOARD_SIZE, WHITE, BLACK, EMPTY} = require '../common/constants'
 
 currentPlayerStore = require '../data/current-player-store'
+allPlayersStore = require '../data/all-players-store'
+playerRosterStore = require '../data/player-roster-store'
 winnerStore = require '../data/winner-store'
 
 module.exports = React.createFactory React.createClass
@@ -19,22 +21,37 @@ module.exports = React.createFactory React.createClass
 
   mixins: [
     Reflux.connect currentPlayerStore, 'currentPlayer'
+    Reflux.connect playerRosterStore, 'players'
+    Reflux.connect allPlayersStore, 'allPlayers'
     Reflux.connect winnerStore, 'winner'
   ]
 
   render: ->
+    byId = {}
+    for player in @state.allPlayers
+      byId[player.id] = player.person.displayName
+
+    whiteName = byId[@state.players.current[WHITE]]
+    blackName = byId[@state.players.current[BLACK]]
+
     tfoot
       className: 'status'
       tr {},
         td
           colSpan: BOARD_SIZE.cols
 
-          if @state.winner isnt EMPTY
+          if !whiteName?
+            "Waiting on the first player."
+
+          else if !blackName?
+            "Waiting on the second player."
+
+          else if @state.winner isnt EMPTY
             switch @state.winner
-              when WHITE then "White wins!"
-              when BLACK then "Black wins!"
+              when WHITE then "#{whiteName} wins!"
+              when BLACK then "#{blackName} wins!"
 
           else
             switch @state.currentPlayer
-              when WHITE then "White's turn."
-              when BLACK then "Black's turn."
+              when WHITE then "#{whiteName}'s turn."
+              when BLACK then "#{blackName}'s turn."
