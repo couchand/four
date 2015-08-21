@@ -1,0 +1,6 @@
+**/.*.swp
+npm-debug.log
+node_modules/
+build
+dist
+www/connect-four.js
