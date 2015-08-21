@@ -108,15 +108,13 @@ module.exports = React.createFactory React.createClass
             colSpan: 2
             "All Players"
 
-        tr {},
-          for player in @state.allPlayers
-            [
-              td
-                key: 'image'
-                img
-                  className: 'avatar'
-                  src: player.person.image.url
-              td
-                key: 'name'
-                player.person.displayName
-            ]
+        for player in @state.allPlayers
+          tr {},
+            td
+              key: 'image'
+              img
+                className: 'avatar'
+                src: player.person.image.url
+            td
+              key: 'name'
+              player.person.displayName
