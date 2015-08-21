@@ -32,14 +32,25 @@ module.exports = Reflux.createStore
     @updateGlobalState globalStateStore.getDefaultData(), yes
 
   updateGlobalState: (state, sync=no) ->
-    if 'current.white' of state
-      games.current[WHITE] = state['current.white']
-    if 'current.black' of state
-      games.current[BLACK] = state['current.black']
-    if 'next.white' of state
-      games.next[WHITE] = state['next.white']
-    if 'next.black' of state
-      games.next[BLACK] = state['next.black']
+    games.current[WHITE] = if 'current.white' of state
+      state['current.white']
+    else
+      no
+
+    games.current[BLACK] = if 'current.black' of state
+      state['current.black']
+    else
+      no
+
+    games.next[WHITE] = if 'next.white' of state
+      state['next.white']
+    else
+      no
+
+    games.next[BLACK] = if 'next.black' of state
+      state['next.black']
+    else
+      no
 
     if sync
       games
@@ -64,7 +75,19 @@ module.exports = Reflux.createStore
     gapi.hangout.data.setValue key, player
 
   onAdvanceGame: ->
-    games.current = games.next
-    games.next = getNewGame()
+    newState =
+      history: '[]'
 
-    @trigger games
+    removals = ['next.white', 'next.black']
+
+    if games.next[WHITE]
+      newState['current.white'] = games.next[WHITE]
+    else
+      removals.push 'current.white'
+
+    if games.next[BLACK]
+      newState['current.black'] = games.next[BLACK]
+    else
+      removals.push 'current.black'
+
+    gapi.hangout.data.submitDelta newState, removals

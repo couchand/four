@@ -4,7 +4,7 @@ React = require 'react'
 Reflux = require 'reflux'
 
 {
-  tfoot, tr, td
+  tfoot, tr, td, a
 } = React.DOM
 
 {BOARD_SIZE, WHITE, BLACK, EMPTY} = require '../common/constants'
@@ -13,6 +13,8 @@ currentPlayerStore = require '../data/current-player-store'
 allPlayersStore = require '../data/all-players-store'
 playerRosterStore = require '../data/player-roster-store'
 winnerStore = require '../data/winner-store'
+
+{advanceGame} = require '../actions/player-roster-actions'
 
 module.exports = React.createFactory React.createClass
 
@@ -25,6 +27,10 @@ module.exports = React.createFactory React.createClass
     Reflux.connect allPlayersStore, 'allPlayers'
     Reflux.connect winnerStore, 'winner'
   ]
+
+  handleAdvanceGame: (e) ->
+    e.preventDefault()
+    advanceGame()
 
   render: ->
     byId = {}
@@ -55,3 +61,12 @@ module.exports = React.createFactory React.createClass
             switch @state.currentPlayer
               when WHITE then "#{whiteName}'s turn."
               when BLACK then "#{blackName}'s turn."
+
+      tr {},
+        td
+          colSpan: BOARD_SIZE.cols
+          if @state.winner isnt EMPTY
+            a
+              href: '#'
+              onClick: @handleAdvanceGame
+              'Advance to next game...'

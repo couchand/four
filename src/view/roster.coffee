@@ -109,12 +109,11 @@ module.exports = React.createFactory React.createClass
             "All Players"
 
         for player in @state.allPlayers
-          tr {},
-            td
-              key: 'image'
+          tr
+            key: player.id
+            td {},
               img
                 className: 'avatar'
                 src: player.person.image.url
-            td
-              key: 'name'
+            td {},
               player.person.displayName
