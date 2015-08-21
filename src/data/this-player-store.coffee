@@ -25,16 +25,19 @@ module.exports = Reflux.createStore
     @output()
 
   getDefaultData: ->
+    playerRoster = playerRosterStore.getDefaultData()
+    playerId = playerIdStore.getDefaultData()
+
+    @getData()
+
+  getData: ->
+    for color, id of playerRoster.current when id is playerId
+        return +color
+
     EMPTY
 
   getInitialState: ->
     @getDefaultData()
 
   output: ->
-    for color, id of playerRoster.current
-      console.log color, id
-      if id is playerId
-        @trigger +color
-        return
-
-    @trigger EMPTY
+    @trigger @getData()

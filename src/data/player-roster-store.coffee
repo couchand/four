@@ -32,8 +32,6 @@ module.exports = Reflux.createStore
 
     games.current[color] = player
 
-    console.log games, color, player
-
     @trigger games
 
   onUpdateNextGame: (color, player) ->
@@ -41,8 +39,6 @@ module.exports = Reflux.createStore
       throw new Error 'cannot change player'
 
     games.next[color] = player
-
-    console.log games, color, player
 
     @trigger games
 

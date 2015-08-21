@@ -44,8 +44,6 @@ module.exports = React.createFactory React.createClass
       else play.black col
 
   render: ->
-    console.log 'header', @state
-
     if @state.currentPlayer is @state.thisPlayer
       thead {},
         tr {},
