@@ -1,7 +1,7 @@
-# current player actions
+# move history actions
 
 Reflux = require 'reflux'
 
 module.exports = Reflux.createActions
-  switchPlayer:
-    sync: yes
+  addMove:
+    sync: no

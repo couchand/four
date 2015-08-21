@@ -2,27 +2,30 @@
 
 Reflux = require 'reflux'
 
-Actions = require '../actions/current-player-actions'
 {WHITE, BLACK} = require '../common/constants'
 
-currentPlayer = WHITE
+historyStore = require './history-store'
 
 module.exports = Reflux.createStore
 
-  listenables: Actions
+  init: ->
+    @listenTo historyStore, @updateHistory
 
   getDefaultData: ->
-    currentPlayer
+    @updateHistory historyStore.getDefaultData(), yes
 
   getInitialState: ->
     @getDefaultData()
 
-  output: ->
-    @trigger currentPlayer
+  updateHistory: (history, sync=no) ->
+    moves = history.length
 
-  onSwitchPlayer: ->
-    currentPlayer = switch currentPlayer
-      when WHITE then BLACK
-      else WHITE
+    color = if moves % 2 is 0
+      WHITE
+    else
+      BLACK
 
-    @trigger currentPlayer
+    if sync
+      color
+    else
+      @trigger color

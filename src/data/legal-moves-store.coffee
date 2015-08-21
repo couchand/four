@@ -11,13 +11,14 @@ boardState = no
 module.exports = Reflux.createStore
   init: ->
     @listenTo boardStore, @updateBoard
-    boardState = boardStore.getDefaultData()
 
   updateBoard: (value) ->
     boardState = value
     @output()
 
   getData: ->
+    boardState = boardStore.getDefaultData()
+
     moves = []
     return moves unless boardState
 

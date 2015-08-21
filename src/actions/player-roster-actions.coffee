@@ -4,10 +4,10 @@ Reflux = require 'reflux'
 
 module.exports = Reflux.createActions
   updateCurrentGame:
-    sync: yes
+    sync: no
 
   updateNextGame:
-    sync: yes
+    sync: no
 
   advanceGame:
     sync: yes

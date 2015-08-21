@@ -4,7 +4,7 @@ Reflux = require 'reflux'
 
 module.exports = Reflux.createActions
   play:
-    sync: yes
+    sync: no
     children: [
       "white"
       "black"

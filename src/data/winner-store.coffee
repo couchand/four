@@ -12,13 +12,13 @@ DIAGONALS = BOARD_SIZE.cols + BOARD_SIZE.rows
 module.exports = Reflux.createStore
   init: ->
     @listenTo boardStore, @updateBoard
-    boardState = boardStore.getDefaultData()
 
   updateBoard: (value) ->
     boardState = value
     @output()
 
   getData: ->
+    boardState = boardStore.getDefaultData()
     return EMPTY unless boardState
 
     for col in boardState
