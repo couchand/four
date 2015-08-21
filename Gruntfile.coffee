@@ -36,6 +36,15 @@ module.exports = (grunt) ->
         src: '<%= browserify.build.dest %>'
         dest: 'www/<%= pkg.name %>.js'
 
+    concat:
+      hangouts:
+        src: [
+          'hangouts/header.xml'
+          'hangouts/index.html'
+          'hangouts/footer.xml'
+        ]
+        dest: 'dist/<%= pkg.name %>.xml'
+
     clean:
       coffee: '<%= coffee.build.dest %>'
       browserify: '<%= browserify.build.dest %>'
@@ -44,8 +53,9 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-browserify'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
 
-  grunt.registerTask 'default', ['clean', 'coffee', 'browserify', 'uglify', 'copy']
+  grunt.registerTask 'default', ['clean', 'coffee', 'browserify', 'uglify', 'copy', 'concat']

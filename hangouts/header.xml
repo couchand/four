@@ -1,0 +1,6 @@
+<Module>
+  <ModulePrefs title="Four">
+    <Require feature="rpc" />
+  </ModulePrefs>
+  <Content type="html">
+<![CDATA[
